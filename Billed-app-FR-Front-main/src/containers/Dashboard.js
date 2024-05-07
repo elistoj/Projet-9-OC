@@ -145,10 +145,17 @@ export default class {
       this.counter ++
     }
 
-    bills.forEach(bill => {
-      $(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
-    })
-
+  //CHANGER bills.forEach(bill => {
+      //$(`#open-bill${bill.id}`).click((e) => this.handleEditTicket(e, bill, bills))
+    //})
+    $(`#status-bills-container${this.index}`).on('click', '.bill-card', (e) => {
+      const billId = $(e.currentTarget).attr('id').replace('open-bill', '');
+      const clickedBill = bills.find(bill => bill.id === billId);
+      this.handleEditTicket(e, clickedBill, bills);
+  });
+//Ajoute un seul écouteur d'événements au conteneur #status-bills-container${this.index} 
+//qui est responsable du traitement des clics sur les tickets dans chacune des listes. 
+//Avec cela, il est possible d'ouvrir plus de listes et d'afficher les tickets de chacune d'elles, comme prévu.
     return bills
 
   }
