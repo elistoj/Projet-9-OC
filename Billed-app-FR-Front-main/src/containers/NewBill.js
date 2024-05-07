@@ -22,24 +22,36 @@ export default class NewBill {
     const fileName = filePath[filePath.length-1]
     const formData = new FormData()
     const email = JSON.parse(localStorage.getItem("user")).email
-    formData.append('file', file)
-    formData.append('email', email)
+    //Ajouter noveau const
+  
+// Définit un tableau contenant les types d'images acceptés.
+const ImgTypes = ["image/jpg", "image/jpeg", "image/png"];
+// Ajoute les données 'file' et 'email' à l'objet formData.
+formData.append('file', file);
+formData.append('email', email);
 
-    this.store
-      .bills()
-      .create({
-        data: formData,
-        headers: {
-          noContentType: true
-        }
-      })
-      .then(({fileUrl, key}) => {
-        console.log(fileUrl)
-        this.billId = key
-        this.fileUrl = fileUrl
-        this.fileName = fileName
-      }).catch(error => console.error(error))
-  }
+// Vérifie si le type de fichier est inclus dans les types d'images acceptés.
+if (ImgTypes.includes(file.type)) {
+// Si le type de fichier est valide, envoie une requête pour créer une nouvelle facture avec les données formData.
+this.store
+.bills()
+.create({
+data: formData,
+headers: { noContentType: true }
+})
+.then(({ fileUrl, key }) => {
+// En cas de succès, enregistre l'URL du fichier, définit les propriétés billId, fileUrl et fileName.
+console.log(fileUrl);
+this.billId = key;
+this.fileUrl = fileUrl;
+this.fileName = fileName;
+})
+.catch(error => console.error(error));
+} else {
+// Si le type de fichier n'est pas autorisé, affiche une alerte et réinitialise la valeur de l'entrée du fichier      alert("Le format du fichier doit être en .JPG, .JPEG ou .PNG")
+      e.target.value = "";
+    }
+  };
   handleSubmit = e => {
     e.preventDefault()
     console.log('e.target.querySelector(`input[data-testid="datepicker"]`).value', e.target.querySelector(`input[data-testid="datepicker"]`).value)
