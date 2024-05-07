@@ -38,7 +38,7 @@ Suivez les indications dans le README du projet backend.
 
 Allez au repo cloné :
 ```
-$ cd Billed-app-FR-Front
+$ cd Billed-app-FR-Front-main
 ```
 
 Installez les packages npm (décrits dans `package.json`) :

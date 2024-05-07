@@ -30,7 +30,7 @@ Voici quelques indications pour gérer les version de node sur votre ordinateur:
     - `nvm use 18.16.1`
 ### Acceder au repertoire du projet :
 ```
-cd Billed-app-FR-Back
+cd Billed-app-FR-Back-main
 ```
 
 ### Installer les dépendances du projet :
